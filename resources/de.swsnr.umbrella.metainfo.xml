@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<component type="desktop-application">
+    <id>de.swsnr.umbrella</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <summary>Backup your data with restic</summary>
+    <description>
+        <p>Backup your home directory with restic, and inspect past backups.</p>
+        <p></p>
+    </description>
+    <categories>
+        <category>Utility</category>
+    </categories>
+    <keywords>
+        <keyword translate="no">restic</keyword>
+        <keyword>Backup</keyword>
+    </keywords>
+    <!-- TODO: Bugtracker and help URLs for Github discussions -->
+    <!-- TODO: Translate URL for translate.codeberg.org -->
+    <url type="homepage">https://github.com/swsnr/umbrella</url>
+    <url type="contact">https://swsnr.de/</url>
+    <url type="vcs-browser">https://github.com/swsnr/umbrella</url>
+    <launchable type="desktop-id">de.swsnr.umbrella.desktop</launchable>
+    <releases>
+        <!-- To start release notes for an upcoming release, copy the following template.
+
+        Upon release, cargo release will replace it accordingly.
+
+        <release version="next" date="9999-01-01">
+            <description>
+            </description>
+            <url>https://github.com/swsnr/umbrella/releases/tag/next</url>
+        </release>
+        -->
+        <release version="next" date="9999-01-01">
+            <description>
+                <p>Initial alpha release.</p>
+            </description>
+            <url>https://github.com/swsnr/umbrella/releases/tag/next</url>
+        </release>
+    </releases>
+    <project_license>MPL-2.0</project_license>
+    <developer id="de.swsnr">
+        <name translate="no">Sebastian Wiesner</name>
+    </developer>
+    <!-- TODO: Screenshots -->
+    <!-- TODO: translation -->
+    <content_rating type="oars-1.1" />
+    <!-- TODO: Brand colors -->
+    <requires>
+        <display_length compare="ge">360</display_length>
+        <internet>always</internet>
+    </requires>
+    <supports>
+        <control>keyboard</control>
+        <control>pointing</control>
+        <control>touch</control>
+    </supports>
+</component>

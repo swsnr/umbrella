@@ -4,8 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use glib::Object;
-use gtk::{gio::ActionEntry, prelude::*};
+use adw::prelude::*;
+use glib::{dgettext, dpgettext2, Object};
+use gtk::gio::ActionEntry;
 
 pub mod widgets;
 
@@ -17,11 +18,49 @@ glib::wrapper! {
 
 impl UmbrellaApplication {
     fn setup_actions(&self) {
-        let actions = [ActionEntry::builder("quit")
-            .activate(|app: &UmbrellaApplication, _, _| app.quit())
-            .build()];
+        let actions = [
+            ActionEntry::builder("quit")
+                .activate(|app: &UmbrellaApplication, _, _| app.quit())
+                .build(),
+            ActionEntry::builder("about")
+                .activate(|app: &UmbrellaApplication, _, _| {
+                    app.show_about_dialog();
+                })
+                .build(),
+        ];
         self.add_action_entries(actions);
         self.set_accels_for_action("app.quit", &["<Control>q"]);
+    }
+
+    fn show_about_dialog(&self) {
+        let dialog = adw::AboutDialog::from_appdata(
+            "/de/swsnr/umbrella/de.swsnr.umbrella.metainfo.xml",
+            Some(&crate::config::release_notes_version().to_string()),
+        );
+        dialog.set_version(crate::config::CARGO_PKG_VERSION);
+
+        // TODO: Translations link
+        dialog.set_developers(&["Sebastian Wiesner https://swsnr.de"]);
+        dialog.set_designers(&["Sebastian Wiesner https://swsnr.de"]);
+        // Credits for the translator to the current language.
+        // Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
+        // Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
+        dialog.set_translator_credits(&dgettext(None, "translator-credits"));
+
+        dialog.add_acknowledgement_section(
+            Some(&dpgettext2(
+                None,
+                "about-dialog.acknowledgment-section",
+                "Helpful services",
+            )),
+            &[
+                "Flathub https://flathub.org/",
+                "Open Build Service https://build.opensuse.org/",
+                "GitHub actions https://github.com/features/actions",
+            ],
+        );
+
+        dialog.present(self.active_window().as_ref());
     }
 }
 

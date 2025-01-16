@@ -31,5 +31,10 @@ template $UmbrellaApplicationWindow: Adw.ApplicationWindow {
 }
 
 menu main_menu {
-  section {}
+  section {
+    item {
+      label: C_("application-window.menu.label", "_About Umbrella");
+      action: "app.about";
+    }
+  }
 }

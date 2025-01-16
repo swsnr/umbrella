@@ -34,6 +34,11 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
     </property>
   </template>
   <menu id="main_menu">
-    <section></section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes" context="application-window.menu.label">_About Umbrella</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
   </menu>
 </interface>

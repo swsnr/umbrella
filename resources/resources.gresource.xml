@@ -7,5 +7,7 @@
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.umbrella.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.umbrella.Devel.svg</file>
         <file preprocess="xml-stripblanks">icons/symbolic/apps/de.swsnr.umbrella-symbolic.svg</file>
+        <!-- Other data files -->
+        <file compressed="true" preprocess="xml-stripblanks">de.swsnr.umbrella.metainfo.xml</file>
     </gresource>
 </gresources>
