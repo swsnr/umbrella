@@ -41,10 +41,14 @@
 
 use adw::prelude::*;
 use app::UmbrellaApplication;
+use glib::gstr;
 use gtk::gio;
 
 mod app;
 mod config;
+mod gettext;
+
+use config::G_LOG_DOMAIN;
 
 fn main() -> glib::ExitCode {
     static GLIB_LOGGER: glib::GlibLogger = glib::GlibLogger::new(
@@ -58,6 +62,16 @@ fn main() -> glib::ExitCode {
     };
     log::set_max_level(max_level);
     log::set_logger(&GLIB_LOGGER).unwrap();
+
+    let locale_dir = config::locale_directory();
+    glib::debug!(
+        "Initializing gettext with locale directory {}",
+        locale_dir.display()
+    );
+    gettext::bindtextdomain(config::APP_ID, locale_dir).unwrap();
+    gettext::textdomain(config::APP_ID).unwrap();
+    gettext::bind_textdomain_codeset(config::APP_ID, gstr!("UTF-8")).unwrap();
+    gettext::setlocale(gettext::LC_ALL, gstr!("")).unwrap();
 
     glib::set_application_name("Umbrella");
 
