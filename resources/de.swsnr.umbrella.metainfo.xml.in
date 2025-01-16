@@ -52,7 +52,7 @@
         <name translate="no">Sebastian Wiesner</name>
     </developer>
     <!-- TODO: Screenshots -->
-    <!-- TODO: translation -->
+    <translation type="gettext">de.swsnr.umbrella</translation>
     <content_rating type="oars-1.1" />
     <!-- TODO: Brand colors -->
     <requires>
