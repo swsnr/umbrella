@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <gresource prefix="/de/swsnr/umbrella/">
+        <!-- User interface templates -->
+        <file compressed="true" preprocess="xml-stripblanks">ui/application-window.ui</file>
+        <!-- Icons -->
+        <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.umbrella.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.umbrella.Devel.svg</file>
+        <file preprocess="xml-stripblanks">icons/symbolic/apps/de.swsnr.umbrella-symbolic.svg</file>
+    </gresource>
+</gresources>
