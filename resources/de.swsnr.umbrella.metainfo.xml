@@ -4,8 +4,16 @@
     <metadata_license>CC0-1.0</metadata_license>
     <summary>Backup your data with restic</summary>
     <description>
-        <p>Backup your home directory with restic, and inspect past backups.</p>
-        <p></p>
+        <p>
+            Backup your home directory with restic to protect your personal data against hardware
+            damage, accidential deletion, and other risks.
+        </p>
+        <p>
+            Umbrella offers a quick and easy way to routinely backup your home directory
+            with restic. It targets users who are familiar with restic and its concepts, and have
+            used the restic command line already, and now seek a convenient way to back up their
+            personal data into existing restic repositories without reaching for the command line.
+        </p>
     </description>
     <categories>
         <category>Utility</category>
