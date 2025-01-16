@@ -16,3 +16,8 @@ pub const G_LOG_DOMAIN: &str = "Umbrella";
 ///
 /// This provides the full version from `Cargo.toml`.
 pub static CARGO_PKG_VERSION: &str = env!("CARGO_PKG_VERSION");
+
+/// Whether this is a development/nightly build.
+pub fn is_development() -> bool {
+    APP_ID.ends_with(".Devel")
+}

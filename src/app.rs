@@ -48,7 +48,11 @@ mod imp {
     impl UmbrellaApplication {
         fn create_application_window(&self) -> UmbrellaApplicationWindow {
             glib::debug!("Creating new application window");
-            super::widgets::UmbrellaApplicationWindow::new(&*self.obj(), crate::config::APP_ID)
+            let window = UmbrellaApplicationWindow::new(&*self.obj(), crate::config::APP_ID);
+            if crate::config::is_development() {
+                window.add_css_class("devel");
+            }
+            window
         }
     }
 
