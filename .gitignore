@@ -1,2 +1,6 @@
 # MyPaint backups
 design/*~
+
+/target
+
+/.vscode/
