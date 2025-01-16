@@ -2,6 +2,7 @@
 <component type="desktop-application">
     <id>de.swsnr.umbrella</id>
     <metadata_license>CC0-1.0</metadata_license>
+    <name>Umbrella</name>
     <summary>Backup your data with restic</summary>
     <description>
         <p>
