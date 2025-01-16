@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Sebastian Wiesner <sebastian@swsnr.de>
+# This file is distributed under the same license as the de.swsnr.umbrella package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: de.swsnr.umbrella\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: resources/de.swsnr.umbrella.metainfo.xml.in:5
+#: resources/ui/application-window.blp:9
+msgid "Umbrella"
+msgstr ""
+
+#: resources/de.swsnr.umbrella.metainfo.xml.in:6
+msgid "Backup your data with restic"
+msgstr ""
+
+#: resources/de.swsnr.umbrella.metainfo.xml.in:8
+msgid ""
+"Backup your home directory with restic to protect your personal data against "
+"hardware damage, accidential deletion, and other risks."
+msgstr ""
+
+#: resources/de.swsnr.umbrella.metainfo.xml.in:12
+msgid ""
+"Umbrella offers a quick and easy way to routinely backup your home directory "
+"with restic. It targets users who are familiar with restic and its concepts, "
+"and have used the restic command line already, and now seek a convenient way "
+"to back up their personal data into existing restic repositories without "
+"reaching for the command line."
+msgstr ""
+
+#: resources/de.swsnr.umbrella.metainfo.xml.in:24
+msgid "Backup"
+msgstr ""
+
+#: resources/de.swsnr.umbrella.metainfo.xml.in:45
+msgid "Initial alpha release."
+msgstr ""
+
+#: resources/ui/application-window.blp:25
+msgctxt "application-window.start-page.title"
+msgid "Umbrella backup"
+msgstr ""
+
+#: resources/ui/application-window.blp:26
+msgctxt "application-window.start-page.description"
+msgid "Under construction"
+msgstr ""
+
+#: resources/ui/application-window.blp:36
+msgctxt "application-window.menu.label"
+msgid "_About Umbrella"
+msgstr ""
+
+#. Credits for the translator to the current language.
+#. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
+#. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
+#: src/app.rs:48
+msgid "translator-credits"
+msgstr ""
+
+#: src/app.rs:54
+msgctxt "about-dialog.acknowledgment-section"
+msgid "Helpful services"
+msgstr ""

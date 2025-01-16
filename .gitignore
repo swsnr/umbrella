@@ -4,3 +4,6 @@ design/*~
 /target
 
 /.vscode/
+
+# Translated data files
+/resources/de.swsnr.umbrella.metainfo.xml
