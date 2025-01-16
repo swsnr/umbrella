@@ -8,6 +8,7 @@ on:
       - src/**/*.rs
       - resources/**/*.blp
       - resources/de.swsnr.umbrella.metainfo.xml.in
+      - de.swsnr.umbrella.desktop.in
       - Makefile
       - .github/workflows/gettext.yml
 

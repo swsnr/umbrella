@@ -33,6 +33,6 @@ pot:
 	xgettext $(XGETTEXT_OPTS) --language=C --keyword=_ --keyword=C_:1c,2 --files-from=po/POTFILES.blp --output=po/de.swsnr.umbrella.blp.pot
 	xgettext $(XGETTEXT_OPTS) --output=po/de.swsnr.umbrella.pot \
 		po/de.swsnr.umbrella.rs.pot po/de.swsnr.umbrella.blp.pot \
-		resources/de.swsnr.umbrella.metainfo.xml.in
+		resources/de.swsnr.umbrella.metainfo.xml.in de.swsnr.umbrella.desktop.in
 	rm -f po/POTFILES* po/de.swsnr.umbrella.rs.pot po/de.swsnr.umbrella.blp.pot
 	sed -i /POT-Creation-Date/d po/de.swsnr.umbrella.pot

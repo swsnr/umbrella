@@ -72,7 +72,10 @@ fn msgfmt() -> Vec<PathBuf> {
         .status()
         .is_ok_and(|status| status.success());
 
-    let templates = &[Path::new("resources/de.swsnr.umbrella.metainfo.xml.in").to_owned()];
+    let templates = &[
+        Path::new("resources/de.swsnr.umbrella.metainfo.xml.in").to_owned(),
+        Path::new("de.swsnr.umbrella.desktop.in").to_owned(),
+    ];
     if msgfmt_exists {
         for file in templates {
             msgfmt_template(file);
