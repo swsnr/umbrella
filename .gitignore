@@ -8,3 +8,6 @@ design/*~
 # Translated data files
 /resources/de.swsnr.umbrella.metainfo.xml
 /de.swsnr.umbrella.desktop
+
+# Compiled message catalogs
+po/*.mo
