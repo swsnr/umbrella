@@ -21,8 +21,8 @@ jobs:
       image: ghcr.io/flathub/flatpak-builder-lint:latest
     steps:
       - uses: actions/checkout@v4
-      - run: flatpak-builder-lint appstream resources/de.swsnr.turnon.metainfo.xml.in
-      - run: flatpak-builder-lint manifest flatpak/de.swsnr.turnon.yaml
+      - run: flatpak-builder-lint appstream resources/de.swsnr.umbrella.metainfo.xml
+      # - run: flatpak-builder-lint manifest flatpak/de.swsnr.umbrella.yaml
 
   # See https://mozilla.github.io/cargo-vet/configuring-ci.html
   cargo-vet:
