@@ -39,7 +39,11 @@ impl UmbrellaApplication {
         );
         dialog.set_version(crate::config::CARGO_PKG_VERSION);
 
-        // TODO: Translations link
+        dialog.add_link(
+            &dpgettext2(None, "about-dialog.link.label", "Translations"),
+            "https://translate.codeberg.org/engage/de-swsnr-umbrella/",
+        );
+
         dialog.set_developers(&["Sebastian Wiesner https://swsnr.de"]);
         dialog.set_designers(&["Sebastian Wiesner https://swsnr.de"]);
         // Credits for the translator to the current language.
