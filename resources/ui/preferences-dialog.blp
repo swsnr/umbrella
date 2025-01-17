@@ -1,0 +1,41 @@
+// Copyright Sebastian Wiesner <sebastian@swsnr.de>
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+using Gtk 4.0;
+using Adw 1;
+
+template $UmbrellaPreferencesDialog: Adw.PreferencesDialog {
+  title: C_("preferences-dialog.title", "Preferences");
+
+  Adw.PreferencesPage {
+    title: C_("preferences-dialog.page.title", "Repository");
+
+    Adw.PreferencesGroup {
+      title: C_("preferences-dialog.group.title", "Repository");
+      description: C_("preferences-dialog.group.description", "<a href=\"https://restic.readthedocs.io/en/stable/030_preparing_a_new_repo.html\">restic repository documentation</a>");
+
+      Adw.EntryRow {
+        title: C_("preferences-dialog.entry.title", "Repository _URI");
+        tooltip-text: C_("preferences-dialog.entry.tooltip", "The restic URI of the repository to connect to");
+        use-underline: true;
+      }
+
+      Adw.PasswordEntryRow {
+        title: C_("preferences-dialog.entry.title", "Repository _key");
+        tooltip-text: C_("preferences-dialog.entry.tooltip", "Enter a known repository key, or generate and add a random key for this application");
+        use-underline: true;
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: C_("preferences-dialog.group.title", "Authentication");
+
+      Adw.PasswordEntryRow {
+        title: C_("preferences-dialog.entry.title", "SFTP _password");
+        tooltip-text: C_("preferences-dialog.entry.tooltip", "The password to use for SFTP; the username should be part of the URI");
+        use-underline: true;
+      }
+    }
+  }
+}

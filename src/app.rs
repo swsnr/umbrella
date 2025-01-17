@@ -7,8 +7,9 @@
 use adw::prelude::*;
 use glib::{dgettext, dpgettext2, Object};
 use gtk::gio::ActionEntry;
+use widgets::UmbrellaPreferencesDialog;
 
-pub mod widgets;
+mod widgets;
 
 glib::wrapper! {
     pub struct UmbrellaApplication(ObjectSubclass<imp::UmbrellaApplication>)
@@ -25,6 +26,12 @@ impl UmbrellaApplication {
             ActionEntry::builder("about")
                 .activate(|app: &UmbrellaApplication, _, _| {
                     app.show_about_dialog();
+                })
+                .build(),
+            ActionEntry::builder("preferences")
+                .activate(|app: &UmbrellaApplication, _, _| {
+                    let dialog = UmbrellaPreferencesDialog::default();
+                    dialog.present(app.active_window().as_ref());
                 })
                 .build(),
         ];

@@ -3,6 +3,7 @@
     <gresource prefix="/de/swsnr/umbrella/">
         <!-- User interface templates -->
         <file compressed="true" preprocess="xml-stripblanks">ui/application-window.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/preferences-dialog.ui</file>
         <!-- Icons -->
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.umbrella.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.umbrella.Devel.svg</file>

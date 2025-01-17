@@ -25,9 +25,20 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         <child>
           <object class="AdwStatusPage">
             <property name="title" translatable="yes" context="application-window.start-page.title">Umbrella backup</property>
-            <property name="description" translatable="yes" context="application-window.start-page.description">Under construction</property>
+            <property name="description" translatable="yes" context="application-window.start-page.description">Connect to a restic repository to back up your data to</property>
             <property name="icon-name" bind-source="UmbrellaApplicationWindow" bind-property="startpage-icon-name" bind-flags="sync-create"/>
             <property name="vexpand">true</property>
+            <property name="child">
+              <object class="GtkButton">
+                <property name="label" translatable="yes" context="application-window.start-page.button.label">Connect repository</property>
+                <property name="action-name">app.preferences</property>
+                <property name="halign">3</property>
+                <style>
+                  <class name="pill"/>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </property>
           </object>
         </child>
       </object>
@@ -35,6 +46,10 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
   </template>
   <menu id="main_menu">
     <section>
+      <item>
+        <attribute name="label" translatable="yes" context="application-window.menu.label">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
       <item>
         <attribute name="label" translatable="yes" context="application-window.menu.label">_About Umbrella</attribute>
         <attribute name="action">app.about</attribute>

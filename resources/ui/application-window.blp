@@ -23,15 +23,31 @@ template $UmbrellaApplicationWindow: Adw.ApplicationWindow {
 
     Adw.StatusPage {
       title: C_("application-window.start-page.title", "Umbrella backup");
-      description: C_("application-window.start-page.description", "Under construction");
+      description: C_("application-window.start-page.description", "Connect to a restic repository to back up your data to");
       icon-name: bind template.startpage-icon-name;
       vexpand: true;
+
+      child: Gtk.Button {
+        label: C_("application-window.start-page.button.label", "Connect repository");
+        action-name: "app.preferences";
+        halign: center;
+
+        styles [
+          "pill",
+          "suggested-action"
+        ]
+      };
     }
   };
 }
 
 menu main_menu {
   section {
+    item {
+      label: C_("application-window.menu.label", "_Preferences");
+      action: "app.preferences";
+    }
+
     item {
       label: C_("application-window.menu.label", "_About Umbrella");
       action: "app.about";

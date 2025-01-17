@@ -5,5 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 mod application_window;
+mod preferences_dialog;
 
 pub use application_window::UmbrellaApplicationWindow;
+pub use preferences_dialog::UmbrellaPreferencesDialog;
