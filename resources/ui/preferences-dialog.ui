@@ -20,6 +20,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <property name="title" translatable="yes" context="preferences-dialog.entry.title">Repository _URI</property>
                 <property name="tooltip-text" translatable="yes" context="preferences-dialog.entry.tooltip">The restic URI of the repository to connect to</property>
                 <property name="use-underline">true</property>
+                <property name="text" bind-source="UmbrellaPreferencesDialog" bind-property="repository-uri" bind-flags="sync-create|bidirectional"/>
               </object>
             </child>
             <child>
@@ -27,6 +28,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <property name="title" translatable="yes" context="preferences-dialog.entry.title">Repository _key</property>
                 <property name="tooltip-text" translatable="yes" context="preferences-dialog.entry.tooltip">Enter a known repository key, or generate and add a random key for this application</property>
                 <property name="use-underline">true</property>
+                <property name="text" bind-source="UmbrellaPreferencesDialog" bind-property="repository-key" bind-flags="sync-create|bidirectional"/>
               </object>
             </child>
           </object>
@@ -39,6 +41,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <property name="title" translatable="yes" context="preferences-dialog.entry.title">SFTP _password</property>
                 <property name="tooltip-text" translatable="yes" context="preferences-dialog.entry.tooltip">The password to use for SFTP; the username should be part of the URI</property>
                 <property name="use-underline">true</property>
+                <property name="text" bind-source="UmbrellaPreferencesDialog" bind-property="sftp-password" bind-flags="sync-create|bidirectional"/>
               </object>
             </child>
           </object>

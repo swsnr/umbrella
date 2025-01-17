@@ -19,13 +19,25 @@ impl Default for UmbrellaPreferencesDialog {
 }
 
 mod imp {
+    use std::cell::RefCell;
+
+    use adw::prelude::*;
     use adw::subclass::prelude::*;
     use glib::subclass::InitializingObject;
     use gtk::CompositeTemplate;
 
-    #[derive(Default, CompositeTemplate)]
+    #[derive(Default, Debug, CompositeTemplate, glib::Properties)]
+    #[properties(wrapper_type = super::UmbrellaPreferencesDialog)]
     #[template(resource = "/de/swsnr/umbrella/ui/preferences-dialog.ui")]
-    pub struct UmbrellaPreferencesDialog {}
+    pub struct UmbrellaPreferencesDialog {
+        // TODO: Warn when not entering an SFTP repository
+        #[property(get, set)]
+        repository_uri: RefCell<String>,
+        #[property(get, set)]
+        repository_key: RefCell<String>,
+        #[property(get, set)]
+        sftp_password: RefCell<String>,
+    }
 
     #[glib::object_subclass]
     impl ObjectSubclass for UmbrellaPreferencesDialog {
@@ -44,6 +56,7 @@ mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for UmbrellaPreferencesDialog {}
 
     impl WidgetImpl for UmbrellaPreferencesDialog {}

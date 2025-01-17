@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use adw::prelude::*;
+use adw::subclass::prelude::*;
 use glib::{dgettext, dpgettext2, Object};
 use gtk::gio::ActionEntry;
 use widgets::UmbrellaPreferencesDialog;
@@ -30,13 +31,21 @@ impl UmbrellaApplication {
                 .build(),
             ActionEntry::builder("preferences")
                 .activate(|app: &UmbrellaApplication, _, _| {
-                    let dialog = UmbrellaPreferencesDialog::default();
-                    dialog.present(app.active_window().as_ref());
+                    app.show_preferences_dialog();
                 })
                 .build(),
         ];
         self.add_action_entries(actions);
         self.set_accels_for_action("app.quit", &["<Control>q"]);
+    }
+
+    fn show_preferences_dialog(&self) {
+        let dialog = UmbrellaPreferencesDialog::default();
+        let settings = self.imp().settings();
+        settings
+            .bind("repository-uri", &dialog, "repository-uri")
+            .build();
+        dialog.present(self.active_window().as_ref());
     }
 
     fn show_about_dialog(&self) {
@@ -104,7 +113,7 @@ mod imp {
         /// Get application settings.
         ///
         /// Panic if settings weren't loaded yet; only call this after `startup`!
-        fn settings(&self) -> Ref<Settings> {
+        pub fn settings(&self) -> Ref<Settings> {
             Ref::map(self.settings.borrow(), |v| v.as_ref().unwrap())
         }
 

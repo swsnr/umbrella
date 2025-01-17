@@ -18,5 +18,9 @@
             <default>false</default>
             <summary>Whether the main window is fullscreen</summary>
         </key>
+        <key name="repository-uri" type="s">
+            <default>""</default>
+            <summary>The restic URI of the repository to back up to</summary>
+        </key>
     </schema>
 </schemalist>

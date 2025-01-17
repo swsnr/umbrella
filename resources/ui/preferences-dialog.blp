@@ -19,12 +19,14 @@ template $UmbrellaPreferencesDialog: Adw.PreferencesDialog {
         title: C_("preferences-dialog.entry.title", "Repository _URI");
         tooltip-text: C_("preferences-dialog.entry.tooltip", "The restic URI of the repository to connect to");
         use-underline: true;
+        text: bind template.repository-uri bidirectional;
       }
 
       Adw.PasswordEntryRow {
         title: C_("preferences-dialog.entry.title", "Repository _key");
         tooltip-text: C_("preferences-dialog.entry.tooltip", "Enter a known repository key, or generate and add a random key for this application");
         use-underline: true;
+        text: bind template.repository-key bidirectional;
       }
     }
 
@@ -35,6 +37,7 @@ template $UmbrellaPreferencesDialog: Adw.PreferencesDialog {
         title: C_("preferences-dialog.entry.title", "SFTP _password");
         tooltip-text: C_("preferences-dialog.entry.tooltip", "The password to use for SFTP; the username should be part of the URI");
         use-underline: true;
+        text: bind template.sftp-password bidirectional;
       }
     }
   }
