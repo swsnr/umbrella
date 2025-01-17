@@ -68,3 +68,4 @@ install: install-locale
 		$(DESTPREFIX)/share/icons/hicolor/symbolic/apps/$(APPID)-symbolic.svg
 	install -Dm0644 de.swsnr.umbrella.desktop $(DESTPREFIX)/share/applications/$(APPID).desktop
 	install -Dm0644 resources/de.swsnr.umbrella.metainfo.xml  $(DESTPREFIX)/share/metainfo/$(APPID).metainfo.xml
+	install -Dm0644 schemas/de.swsnr.umbrella.gschema.xml $(DESTPREFIX)/share/glib-2.0/schemas/$(APPID).gschema.xml

@@ -78,23 +78,50 @@ impl Default for UmbrellaApplication {
 }
 
 mod imp {
+    use std::cell::{Ref, RefCell};
+
     use adw::prelude::*;
     use adw::subclass::prelude::*;
+    use gtk::gio::{Settings, SettingsBackend};
 
     use crate::config::G_LOG_DOMAIN;
 
     use super::widgets::UmbrellaApplicationWindow;
 
     #[derive(Default)]
-    pub struct UmbrellaApplication {}
+    pub struct UmbrellaApplication {
+        settings: RefCell<Option<Settings>>,
+    }
 
     impl UmbrellaApplication {
+        /// Get application settings.
+        ///
+        /// Panic if settings weren't loaded yet; only call this after `startup`!
+        fn settings(&self) -> Ref<Settings> {
+            Ref::map(self.settings.borrow(), |v| v.as_ref().unwrap())
+        }
+
         fn create_application_window(&self) -> UmbrellaApplicationWindow {
             glib::debug!("Creating new application window");
             let window = UmbrellaApplicationWindow::new(&*self.obj(), crate::config::APP_ID);
             if crate::config::is_development() {
                 window.add_css_class("devel");
             }
+
+            let settings = self.settings();
+            settings
+                .bind("main-window-width", &window, "default-width")
+                .build();
+            settings
+                .bind("main-window-height", &window, "default-height")
+                .build();
+            settings
+                .bind("main-window-maximized", &window, "maximized")
+                .build();
+            settings
+                .bind("main-window-fullscreen", &window, "fullscreened")
+                .build();
+
             window
         }
     }
@@ -119,6 +146,15 @@ mod imp {
             let app = self.obj();
             glib::debug!("Application starting");
             app.setup_actions();
+
+            // Load app settings
+            self.settings.replace(Some(Settings::new_full(
+                &crate::config::schema_source()
+                    .lookup(crate::config::APP_ID, true)
+                    .unwrap(),
+                SettingsBackend::NONE,
+                None,
+            )));
         }
 
         /// Activate the application.

@@ -93,6 +93,14 @@ fn msgfmt() -> Vec<PathBuf> {
     sources
 }
 
+fn glib_compile_schemas() -> Vec<PathBuf> {
+    let schemas = glob_io("schemas/*.gschema.xml").unwrap();
+    Command::new("glib-compile-schemas")
+        .args(["--strict", "schemas"])
+        .checked();
+    schemas
+}
+
 pub fn compile_resources<P: AsRef<Path>>(
     source_dirs: &[P],
     gresource: &str,
@@ -146,6 +154,7 @@ pub fn main() {
     let tasks = [
         std::thread::spawn(compile_blueprint),
         std::thread::spawn(msgfmt),
+        std::thread::spawn(glib_compile_schemas),
     ];
 
     let mut sources = tasks

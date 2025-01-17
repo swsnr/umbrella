@@ -11,3 +11,6 @@ design/*~
 
 # Compiled message catalogs
 po/*.mo
+
+# Compiled schema
+/schemas/gschemas.compiled

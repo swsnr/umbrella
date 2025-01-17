@@ -1,0 +1,22 @@
+<schemalist>
+    <schema id="de.swsnr.umbrella" path="/de/swsnr/umbrella/">
+        <key name="main-window-width" type="i">
+            <default>480</default>
+            <summary>The width of the main window</summary>
+            <description>Stores the width of the main window to restore the window state.</description>
+        </key>
+        <key name="main-window-height" type="i">
+            <default>480</default>
+            <summary>The height of the main window</summary>
+            <description>Stores the height of the main window to restore the window state.</description>
+        </key>
+        <key name="main-window-maximized" type="b">
+            <default>false</default>
+            <summary>Whether the main window is maximized</summary>
+        </key>
+        <key name="main-window-fullscreen" type="b">
+            <default>false</default>
+            <summary>Whether the main window is fullscreen</summary>
+        </key>
+    </schema>
+</schemalist>
