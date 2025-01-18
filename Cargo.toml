@@ -26,6 +26,7 @@ gtk = { package = "gtk4", version = "0.9.5", features = ["gnome_47"] }
 glib = { version = "0.20.7", features = ["log", "log_macros"] }
 log = "0.4.22"
 semver = "1.0.24"
+libc = "0.2.169"
 
 [build-dependencies]
 glob = "0.3.1"

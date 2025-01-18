@@ -661,6 +661,7 @@ dependencies = [
  "glob",
  "gtk4",
  "libadwaita",
+ "libc",
  "log",
  "semver",
 ]
