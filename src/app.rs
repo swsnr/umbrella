@@ -8,8 +8,10 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 use glib::{dgettext, dpgettext2, Object};
 use gtk::gio::ActionEntry;
+use secrets::AppSecrets;
 use widgets::UmbrellaPreferencesDialog;
 
+mod secrets;
 mod widgets;
 
 glib::wrapper! {
@@ -45,7 +47,37 @@ impl UmbrellaApplication {
         settings
             .bind("repository-uri", &dialog, "repository-uri")
             .build();
-        dialog.present(self.active_window().as_ref());
+        dialog.connect_closed(glib::clone!(
+            #[strong(rename_to = app)]
+            self,
+            move |dialog| {
+                let secrets = AppSecrets {
+                    sftp_password: dialog.sftp_password(),
+                    repository_key: dialog.repository_key(),
+                };
+                glib::spawn_future_local(glib::clone!(
+                    #[strong]
+                    app,
+                    async move {
+                        app.imp()
+                            .secrets_storage()
+                            .store_secrets(secrets)
+                            .await
+                            .unwrap();
+                    }
+                ));
+            }
+        ));
+        glib::spawn_future_local(glib::clone!(
+            #[strong(rename_to = app)]
+            self,
+            async move {
+                let secrets = app.imp().secrets_storage().load_secrets().await.unwrap();
+                dialog.set_sftp_password(secrets.sftp_password);
+                dialog.set_repository_key(secrets.repository_key);
+                dialog.present(app.active_window().as_ref());
+            }
+        ));
     }
 
     fn show_about_dialog(&self) {
@@ -102,11 +134,11 @@ mod imp {
 
     use crate::config::G_LOG_DOMAIN;
 
-    use super::widgets::UmbrellaApplicationWindow;
+    use super::{secrets::AppSecretsStorage, widgets::UmbrellaApplicationWindow};
 
-    #[derive(Default)]
     pub struct UmbrellaApplication {
         settings: RefCell<Option<Settings>>,
+        secrets_storage: AppSecretsStorage,
     }
 
     impl UmbrellaApplication {
@@ -115,6 +147,10 @@ mod imp {
         /// Panic if settings weren't loaded yet; only call this after `startup`!
         pub fn settings(&self) -> Ref<Settings> {
             Ref::map(self.settings.borrow(), |v| v.as_ref().unwrap())
+        }
+
+        pub fn secrets_storage(&self) -> &AppSecretsStorage {
+            &self.secrets_storage
         }
 
         fn create_application_window(&self) -> UmbrellaApplicationWindow {
@@ -149,6 +185,13 @@ mod imp {
         type Type = super::UmbrellaApplication;
 
         type ParentType = adw::Application;
+
+        fn new() -> Self {
+            Self {
+                settings: RefCell::default(),
+                secrets_storage: AppSecretsStorage::new_for_id(crate::config::APP_ID),
+            }
+        }
     }
 
     impl ObjectImpl for UmbrellaApplication {}
