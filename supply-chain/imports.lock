@@ -7,6 +7,20 @@ when = "2024-04-10"
 user-id = 52553
 user-login = "embark-studios"
 
+[[publisher.libsecret]]
+version = "0.6.0"
+when = "2025-01-23"
+user-id = 4372
+user-login = "swsnr"
+user-name = "Sebastian Wiesner"
+
+[[publisher.libsecret-sys]]
+version = "0.6.0"
+when = "2025-01-23"
+user-id = 4372
+user-login = "swsnr"
+user-name = "Sebastian Wiesner"
+
 [[audits.bytecode-alliance.audits.futures-channel]]
 who = "Joel Dice <joel.dice@gmail.com>"
 criteria = "safe-to-deploy"

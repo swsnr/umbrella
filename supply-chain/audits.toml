@@ -2,3 +2,15 @@
 # cargo-vet audits file
 
 [audits]
+
+[[trusted.libsecret]]
+criteria = "safe-to-run"
+user-id = 4372 # Sebastian Wiesner (swsnr)
+start = "2025-01-23"
+end = "2026-01-24"
+
+[[trusted.libsecret-sys]]
+criteria = "safe-to-run"
+user-id = 4372 # Sebastian Wiesner (swsnr)
+start = "2025-01-23"
+end = "2026-01-24"
