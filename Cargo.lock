@@ -441,6 +441,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b5aba8db14291edd000dfcc4d620c7ebfb122c613afb886ca8803fa4e128a20a"
 
 [[package]]
+name = "libsecret"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8a3dab8e7c1924874af81b0079f750391a6273ecab72cbf1576aa172b8f40144"
+dependencies = [
+ "gio",
+ "glib",
+ "libc",
+ "libsecret-sys",
+]
+
+[[package]]
+name = "libsecret-sys"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2353d5af721252890e2de89b121bee3b0376a53fa105cc7c1838b8195d364335"
+dependencies = [
+ "gio-sys",
+ "glib-sys",
+ "gobject-sys",
+ "libc",
+ "pkg-config",
+ "system-deps",
+]
+
+[[package]]
 name = "log"
 version = "0.4.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -662,6 +688,7 @@ dependencies = [
  "gtk4",
  "libadwaita",
  "libc",
+ "libsecret",
  "log",
  "semver",
 ]

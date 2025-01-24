@@ -4,45 +4,63 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use gtk::gio::IOErrorEnum;
+use std::collections::HashMap;
 
-// TODO: Figure out backend situation.
-//
-// Obvious choice would be libsecret and libsecret-rs but the latter appears not
-// to be maintained anymore, and it's unclear whether anyone can take over.
-//
-// The proposed alternative is oo7, but that crate has a huge dependency chain
-// and adds about 500k lines to the cargo vet audit backlog, with many crates
-// neither audited nor trusted by any of the registered audit sources.
-//
-// We may find ourselves ending up querying the secret portal directly and then
-// encrypt secrets ourselves.
-
-#[derive(Default)]
-pub struct AppSecrets {
-    pub repository_key: String,
-    pub sftp_password: String,
+#[derive(Debug, Clone, Copy)]
+pub enum AppSecretService {
+    /// The SFTP password to access the SFTP server hosting the repository.
+    Sftp,
+    /// The key for the restic repository.
+    Restic,
 }
 
 /// Application secrets.
-pub struct AppSecretsStorage {}
+pub struct AppSecretsStorage {
+    schema: secret::Schema,
+}
+
+impl From<AppSecretService> for &'static str {
+    fn from(value: AppSecretService) -> Self {
+        match value {
+            AppSecretService::Sftp => "SFTP",
+            AppSecretService::Restic => "restic",
+        }
+    }
+}
 
 impl AppSecretsStorage {
-    pub fn new_for_id(_id: &str) -> Self {
-        Self {}
+    pub fn new_for_id(id: &str) -> Self {
+        let attributes = HashMap::from_iter([("service", secret::SchemaAttributeType::String)]);
+        let schema = secret::Schema::new(id, secret::SchemaFlags::NONE, attributes);
+        Self { schema }
     }
 
-    pub async fn store_secrets(&self, _secrets: AppSecrets) -> Result<(), glib::Error> {
-        Err(glib::Error::new(
-            IOErrorEnum::NotSupported,
-            "Not implemented",
-        ))
+    pub async fn store_password(
+        &self,
+        label: &str,
+        service: AppSecretService,
+        password: &str,
+    ) -> Result<(), glib::Error> {
+        secret::password_store_future(
+            Some(&self.schema),
+            HashMap::from_iter([("service", service.into())]),
+            Some(secret::COLLECTION_DEFAULT),
+            label,
+            password,
+        )
+        .await
     }
 
-    pub async fn load_secrets(&self) -> Result<AppSecrets, glib::Error> {
-        Ok(AppSecrets {
-            repository_key: "secret-repo-key".to_owned(),
-            sftp_password: "super-secret-best-password".to_owned(),
-        })
+    pub async fn load_password(
+        &self,
+        service: AppSecretService,
+    ) -> Result<Option<String>, glib::Error> {
+        let password = secret::password_lookup_future(
+            Some(&self.schema),
+            HashMap::from_iter([("service", service.into())]),
+        )
+        .await?;
+
+        Ok(password.map(String::from))
     }
 }

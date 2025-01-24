@@ -8,8 +8,10 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 use glib::{dgettext, dpgettext2, Object};
 use gtk::gio::ActionEntry;
-use secrets::AppSecrets;
+use secrets::AppSecretService;
 use widgets::UmbrellaPreferencesDialog;
+
+use crate::config::G_LOG_DOMAIN;
 
 mod secrets;
 mod widgets;
@@ -51,17 +53,25 @@ impl UmbrellaApplication {
             #[strong(rename_to = app)]
             self,
             move |dialog| {
-                let secrets = AppSecrets {
-                    sftp_password: dialog.sftp_password(),
-                    repository_key: dialog.repository_key(),
-                };
+                let sftp_password = dialog.sftp_password();
+                let repository_key = dialog.repository_key();
                 glib::spawn_future_local(glib::clone!(
                     #[strong]
                     app,
                     async move {
+                        // We just require that there's a secret service
                         app.imp()
                             .secrets_storage()
-                            .store_secrets(secrets)
+                            .store_password("SFTP password", AppSecretService::Sftp, &sftp_password)
+                            .await
+                            .unwrap();
+                        app.imp()
+                            .secrets_storage()
+                            .store_password(
+                                "Restic repository key",
+                                AppSecretService::Restic,
+                                &repository_key,
+                            )
                             .await
                             .unwrap();
                     }
@@ -72,9 +82,29 @@ impl UmbrellaApplication {
             #[strong(rename_to = app)]
             self,
             async move {
-                let secrets = app.imp().secrets_storage().load_secrets().await.unwrap();
-                dialog.set_sftp_password(secrets.sftp_password);
-                dialog.set_repository_key(secrets.repository_key);
+                let secrets = app.imp().secrets_storage();
+                let sftp_password = secrets
+                    .load_password(AppSecretService::Sftp)
+                    .await
+                    .inspect_err(|err| {
+                        glib::error!("Failed to load SFTP password from secret storage: {err}");
+                    })
+                    .ok()
+                    .flatten()
+                    .unwrap_or_default();
+                let resitc_repository_key = secrets
+                    .load_password(AppSecretService::Restic)
+                    .await
+                    .inspect_err(|err| {
+                        glib::error!(
+                            "Failed to load restic repository key from secret storage: {err}"
+                        );
+                    })
+                    .ok()
+                    .flatten()
+                    .unwrap_or_default();
+                dialog.set_sftp_password(sftp_password);
+                dialog.set_repository_key(resitc_repository_key);
                 dialog.present(app.active_window().as_ref());
             }
         ));
