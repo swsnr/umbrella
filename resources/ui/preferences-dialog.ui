@@ -15,6 +15,24 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes" context="preferences-dialog.group.title">Repository</property>
             <property name="description" translatable="yes" context="preferences-dialog.group.description">&lt;a href="https://restic.readthedocs.io/en/stable/030_preparing_a_new_repo.html"&gt;restic repository documentation&lt;/a&gt;</property>
+            <child type="header-suffix">
+              <object class="GtkBox">
+                <child>
+                  <object class="GtkButton">
+                    <property name="action-name">generate-random-key</property>
+                    <child>
+                      <object class="AdwButtonContent">
+                        <property name="icon-name">plus-large-symbolic</property>
+                        <property name="label" translatable="yes" context="preferences-dialog.group.header-suffix.button">Generate key</property>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="flat"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
             <child>
               <object class="AdwEntryRow">
                 <property name="title" translatable="yes" context="preferences-dialog.entry.title">Repository _URI</property>
@@ -42,6 +60,29 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <property name="tooltip-text" translatable="yes" context="preferences-dialog.entry.tooltip">The password to use for SFTP; the username should be part of the URI</property>
                 <property name="use-underline">true</property>
                 <property name="text" bind-source="UmbrellaPreferencesDialog" bind-property="sftp-password" bind-flags="sync-create|bidirectional"/>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwButtonRow">
+                <property name="title" translatable="yes" context="preferences-dialog.row.title">Test settings</property>
+                <property name="start-icon-name">test-symbolic</property>
+                <property name="action-name">test-settings</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes" context="preferences-dialog.row.title">SFTP login</property>
+                <property name="sensitive">false</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes" context="preferences-dialog.row.title">Repository key</property>
+                <property name="sensitive">false</property>
               </object>
             </child>
           </object>

@@ -15,6 +15,22 @@ template $UmbrellaPreferencesDialog: Adw.PreferencesDialog {
       title: C_("preferences-dialog.group.title", "Repository");
       description: C_("preferences-dialog.group.description", "<a href=\"https://restic.readthedocs.io/en/stable/030_preparing_a_new_repo.html\">restic repository documentation</a>");
 
+      [header-suffix]
+      Gtk.Box {
+        Gtk.Button {
+          action-name: "generate-random-key";
+
+          Adw.ButtonContent {
+            icon-name: "plus-large-symbolic";
+            label: C_("preferences-dialog.group.header-suffix.button", "Generate key");
+          }
+
+          styles [
+            "flat"
+          ]
+        }
+      }
+
       Adw.EntryRow {
         title: C_("preferences-dialog.entry.title", "Repository _URI");
         tooltip-text: C_("preferences-dialog.entry.tooltip", "The restic URI of the repository to connect to");
@@ -38,6 +54,24 @@ template $UmbrellaPreferencesDialog: Adw.PreferencesDialog {
         tooltip-text: C_("preferences-dialog.entry.tooltip", "The password to use for SFTP; the username should be part of the URI");
         use-underline: true;
         text: bind template.sftp-password bidirectional;
+      }
+    }
+
+    Adw.PreferencesGroup {
+      Adw.ButtonRow {
+        title: C_("preferences-dialog.row.title", "Test settings");
+        start-icon-name: "test-symbolic";
+        action-name: "test-settings";
+      }
+
+      Adw.ActionRow {
+        title: C_("preferences-dialog.row.title", "SFTP login");
+        sensitive: false;
+      }
+
+      Adw.ActionRow {
+        title: C_("preferences-dialog.row.title", "Repository key");
+        sensitive: false;
       }
     }
   }

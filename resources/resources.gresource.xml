@@ -5,6 +5,8 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/application-window.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/preferences-dialog.ui</file>
         <!-- Icons -->
+        <file preprocess="xml-stripblanks">icons/scalable/actions/test-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/actions/plus-large-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.umbrella.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.umbrella.Devel.svg</file>
         <file preprocess="xml-stripblanks">icons/symbolic/apps/de.swsnr.umbrella-symbolic.svg</file>
