@@ -16,13 +16,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: resources/de.swsnr.umbrella.metainfo.xml.in:5
+#: de.swsnr.umbrella.desktop.in:3 resources/de.swsnr.umbrella.metainfo.xml.in:5
 #: resources/ui/application-window.blp:9
 msgid "Umbrella"
 msgstr ""
 
-#: resources/de.swsnr.umbrella.metainfo.xml.in:6
+#: de.swsnr.umbrella.desktop.in:4 resources/de.swsnr.umbrella.metainfo.xml.in:6
 msgid "Backup your data with restic"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: de.swsnr.umbrella.desktop.in:10
+msgid "Gnome;GTK;Backup;restic;"
 msgstr ""
 
 #: resources/de.swsnr.umbrella.metainfo.xml.in:8
@@ -44,7 +49,7 @@ msgstr ""
 msgid "Backup"
 msgstr ""
 
-#: resources/de.swsnr.umbrella.metainfo.xml.in:45
+#: resources/de.swsnr.umbrella.metainfo.xml.in:46
 msgid "Initial alpha release."
 msgstr ""
 
@@ -55,22 +60,116 @@ msgstr ""
 
 #: resources/ui/application-window.blp:26
 msgctxt "application-window.start-page.description"
-msgid "Under construction"
+msgid "Connect to a restic repository to back up your data to"
 msgstr ""
 
-#: resources/ui/application-window.blp:36
+#: resources/ui/application-window.blp:31
+msgctxt "application-window.start-page.button.label"
+msgid "Connect repository"
+msgstr ""
+
+#: resources/ui/application-window.blp:47
+msgctxt "application-window.menu.label"
+msgid "_Preferences"
+msgstr ""
+
+#: resources/ui/application-window.blp:52
 msgctxt "application-window.menu.label"
 msgid "_About Umbrella"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:9
+msgctxt "preferences-dialog.title"
+msgid "Preferences"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:12
+msgctxt "preferences-dialog.page.title"
+msgid "Repository"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:15
+msgctxt "preferences-dialog.group.title"
+msgid "Repository"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:16
+msgctxt "preferences-dialog.group.description"
+msgid ""
+"<a href=\"https://restic.readthedocs.io/en/stable/030_preparing_a_new_repo."
+"html\">restic repository documentation</a>"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:25
+msgctxt "preferences-dialog.group.header-suffix.button"
+msgid "Generate key"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:35
+msgctxt "preferences-dialog.entry.title"
+msgid "Repository _URI"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:36
+msgctxt "preferences-dialog.entry.tooltip"
+msgid "The restic URI of the repository to connect to"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:42
+msgctxt "preferences-dialog.entry.title"
+msgid "Repository _key"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:43
+msgctxt "preferences-dialog.entry.tooltip"
+msgid ""
+"Enter a known repository key, or generate and add a random key for this "
+"application"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:50
+msgctxt "preferences-dialog.group.title"
+msgid "Authentication"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:53
+msgctxt "preferences-dialog.entry.title"
+msgid "SFTP _password"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:54
+msgctxt "preferences-dialog.entry.tooltip"
+msgid "The password to use for SFTP; the username should be part of the URI"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:62
+msgctxt "preferences-dialog.row.title"
+msgid "Test settings"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:68
+msgctxt "preferences-dialog.row.title"
+msgid "SFTP login"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:73
+msgctxt "preferences-dialog.row.title"
+msgid "Repository key"
+msgstr ""
+
+#: src/app.rs:121
+msgctxt "about-dialog.link.label"
+msgid "Translations"
 msgstr ""
 
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:48
+#: src/app.rs:130
 msgid "translator-credits"
 msgstr ""
 
-#: src/app.rs:54
+#: src/app.rs:136
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr ""
